@@ -36,7 +36,7 @@ function getNatlParks(query, maxResults=10) {
     });
 }
 
-function watchForm() {
+function userInput(){
   $('form').submit(event => {
     event.preventDefault();
     const searchTerm = $('#js-search-state').val();
@@ -44,3 +44,5 @@ function watchForm() {
     getNatlParks(searchTerm, maxResults);
   });
 }
+
+$(userInput);
