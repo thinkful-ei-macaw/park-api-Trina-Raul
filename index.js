@@ -1,8 +1,11 @@
-'use stricl';
+'use strict';
+
+curl -H 'X-Api-Key:fAvwKXa8AAXHrlhhywnH2TgzzE4pSjTjhpZ1QPwc' 'https://developer.nps.gov/api/v1/parks?parkCode=acad'
+
 
 const apiKey = 'fAvwKXa8AAXHrlhhywnH2TgzzE4pSjTjhpZ1QPwc';
-const searchUrl = 'https://developer.nps.gov/api/v1/alerts';
-
+//const searchUrl = 'https://developer.nps.gov/api/v1/alerts';
+const searchUrl = 'https://developer.nps.gov/api/v1';
 
 function formatQueryParams(params) {
   const queryItems = Object.keys(params)
@@ -19,7 +22,7 @@ function getNatlParks(query, maxResults=10) {
     type: 'somethinghere?'
   };
   const queryString = formatQueryParams(params)
-  const url = searchURL + '?' + queryString;
+  const url = searchUrl + '?' + queryString;
 
   console.log(url);
 
@@ -27,6 +30,7 @@ function getNatlParks(query, maxResults=10) {
     .then(response => {
       if (response.ok) {
         return response.json();
+        console.log(response.json())
       }
       throw new Error(response.statusText);
     })
@@ -43,6 +47,7 @@ function userInput(){
     const maxResults = $('#js-max-results').val();
     getNatlParks(searchTerm, maxResults);
   });
+  
 }
 
 $(userInput);
